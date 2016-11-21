@@ -1,9 +1,26 @@
 Of the four types of sources indicated by the type (point, nonpoint, onroad, nonroad) variable, which of these four sources have seen decreases in emissions from 1999–2008 for Baltimore City? Which have seen increases in emissions from 1999–2008? Use the ggplot2 plotting system to make a plot answer this question.
 
-Nonpoint (green line): From the plot, we see that nonpoint (green line) sharply decreased from 1999 to 2002. It remained steady from 2002 to 2005 with 1,500 Total \(PM_{2.5}\) emissions. Finally, a slight decrease occurred between 2005 and 2008 from 1,500 Total \(PM_{2.5}\) emissions.
+Nonpoint (green line):Sharply decreased from 1999 to 2002. It remained steady from 2002 to 2005 with 1,500 Total \(PM_{2.5}\) emissions. Finally, a slight decrease occurred between 2005 and 2008 from 1,500 Total \(PM_{2.5}\) emissions.
 
-Point (purple line): From the plot, we see that the point (purple line) slightly increased from 1999 to 2002. It then sharply increased in \(PM_{2.5}\) emissions from 2002 to 2005. Finally, from 2005 to 2008, the \(PM_{2.5}\) emissions sharply decreased.
+Point (purple line): Slightly increased from 1999 to 2002. It then sharply increased in \(PM_{2.5}\) emissions from 2002 to 2005. Finally, from 2005 to 2008, the \(PM_{2.5}\) emissions sharply decreased.
 
-Onroad (blue line): From the plot, we see that the onroad (blue line) slightly decreased from 1999 to 2002. It remained approximately steady from 2002 to 2005 and continued this trend from 2005 to 2008. In comparison to the nonroad values, this over all trend was lower compared to the nonroad values.
+Onroad (blue line): Slightly decreased from 1999 to 2002. It remained approximately steady from 2002 to 2005 and continued this trend from 2005 to 2008. In comparison to the nonroad values, this over all trend was lower compared to the nonroad values.
 
-Nonroad (red line): From the plot, we see that the nonroad (red line) followed the same path as the onroad values only slightly higher in \(PM_{2.5}\) emissions values. slightly decreased from 1999 to 2002. It remained approximately steady from 2002 to 2005 and continued this trend from 2005 to 2008.
+Nonroad (red line): Followed the same path as the onroad values only slightly higher in \(PM_{2.5}\) emissions values. slightly decreased from 1999 to 2002. It remained approximately steady from 2002 to 2005 and continued this trend from 2005 to 2008.
+
+
+Baltimore <- NEI[NEI$fips == "24510", ]
+emissionsByTypeAndYear <- aggregate(Emissions ~ type * year, data = Baltimore, 
+    FUN = sum)
+
+suppressWarnings(library(ggplot2))
+suppressWarnings(library(grid))
+
+q <- qplot(y = Emissions, x = year, data = emissionsByTypeAndYear, color = type, 
+    facets = . ~ type)
+q + scale_x_continuous(breaks = seq(1999, 2008, 3)) + theme_bw() + geom_point(size = 3) + 
+    geom_line() + labs(y = expression("Total " * PM[2.5] * " Emissions (in tons)")) + 
+    labs(x = "Year") + labs(title = expression("Total " * PM[2.5] * " Emissions in Baltimore (1999 - 2008)")) + 
+    theme(axis.text = element_text(size = 8), axis.title = element_text(size = 14), 
+        panel.margin = unit(1, "lines"), plot.title = element_text(vjust = 2), 
+        legend.title = element_text(size = 11)) + scale_colour_discrete(name = "Type")

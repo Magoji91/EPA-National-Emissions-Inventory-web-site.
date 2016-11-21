@@ -1,12 +1,12 @@
 Of the four types of sources indicated by the type (point, nonpoint, onroad, nonroad) variable, which of these four sources have seen decreases in emissions from 1999–2008 for Baltimore City? Which have seen increases in emissions from 1999–2008? Use the ggplot2 plotting system to make a plot answer this question.
 
-I-) Nonpoint (green line):Sharply decreased from 1999 to 2002. It remained steady from 2002 to 2005 with 1,500 Total \(PM_{2.5}\) emissions. Finally, a slight decrease occurred between 2005 and 2008 from 1,500 Total \(PM_{2.5}\) emissions.
+I-) Nonpoint (green line):PM2.5 500t reduction between 1999 and 2008.
 
-II-) Point (purple line): Slightly increased from 1999 to 2002. It then sharply increased in \(PM_{2.5}\) emissions from 2002 to 2005. Finally, from 2005 to 2008, the \(PM_{2.5}\) emissions sharply decreased.
+II-) Point (purple line): There was a vertiginous increase in the emission of pollutants between 1999 and 2005, but from 2005 to 2008 it is observed that the emission of PM2.5 remained below 450t..
 
-III-) Onroad (blue line): Slightly decreased from 1999 to 2002. It remained approximately steady from 2002 to 2005 and continued this trend from 2005 to 2008. In comparison to the nonroad values, this over all trend was lower compared to the nonroad values.
+III-) Onroad (blue line): The PM2.5 emission has remained below the other rates from 1999 to 2007 and was still in a slight downward trend in 2008
 
-IV-) Nonroad (red line): Followed the same path as the onroad values only slightly higher in \(PM_{2.5}\) emissions values. slightly decreased from 1999 to 2002. It remained approximately steady from 2002 to 2005 and continued this trend from 2005 to 2008.
+IV-) Nonroad (red line): It is similar to the on-road chart, but it shows a sharper drop in pollutant emissions in the years 1999 to 2002 and a steeper decline between 2005 and 2008.
 
 
 Baltimore <- NEI[NEI$fips == "24510", ]
@@ -25,7 +25,7 @@ q + scale_x_continuous(breaks = seq(1999, 2008, 3)) + theme_bw() + geom_point(si
         panel.margin = unit(1, "lines"), plot.title = element_text(vjust = 2), 
         legend.title = element_text(size = 11)) + scale_colour_discrete(name = "Type")
         
-OBSERVATION - SECOND PLOT ANALYZE
+**** OBSERVATION - INTEGRATES GRAPH WITH ALL TYPES OF PLOTS ****
 
 library(ggplot2)
 library(plyr)

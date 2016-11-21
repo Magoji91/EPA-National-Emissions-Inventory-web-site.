@@ -24,3 +24,4 @@ lines(totalPM25ByYear, x = rownames(totalPM25ByYear), col = "blue")
 axis(2)
 axis(side = 1, at = seq(1999, 2008, by = 3))
 box()
+

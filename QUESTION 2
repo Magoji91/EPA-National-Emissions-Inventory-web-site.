@@ -18,3 +18,9 @@ q + scale_x_continuous(breaks = seq(1999, 2008, 3)) + theme_bw() + geom_point(si
     theme(axis.text = element_text(size = 8), axis.title = element_text(size = 14), 
         panel.margin = unit(1, "lines"), plot.title = element_text(vjust = 2), 
         legend.title = element_text(size = 11)) + scale_colour_discrete(name = "Type")
+        
+Baltimore <- subset(NEI, fips == "24510")
+BaltimorePM2.5 <- tapply((Baltimore$Emissions)/1000, Baltimore$year, sum)
+ barplot(BaltimorePM2.5, xlab = "Year", ylab = expression("Emissions of PM"[2.5]* " (in kilotons)"), 
++         main = expression("Total emissions from PM"[2.5]* " in Baltimore City, MD (1999-2008)"), 
++         col = c("red", "blue", "purple", "orange"))

@@ -1,7 +1,7 @@
 Have total emissions from PM2.5 decreased in the United States from 1999 to 2008? 
 Using the base plotting system, make a plot showing the total PM2.5 emission from all sources for each of the years 1999, 2002, 2005, and 2008.
 
-R - The emission of PM2.5 decreases in the periods of 1998 to 2002 and between 2005 to 2008. However in the years of 2002 to 2005 there is a significant increase in the emission of PM2.5.
+R - The graph shows a dizzying drop in the emission of PM2.5
 
 totalPM25ByYear <- tapply(NEI$Emissions, NEI$year, sum)
  

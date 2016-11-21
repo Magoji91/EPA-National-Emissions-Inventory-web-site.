@@ -1,6 +1,9 @@
 Have total emissions from PM2.5 decreased in the Baltimore City, Maryland (fips == "24510") from 1999 to 2008? 
 Use the base plotting system to make a plot answering this question.
 
+R - The emission of PM2.5 decreases in the periods of 1998 to 2002 and between 2005 to 2008. However in the years of 2002 to 2005 there is a significant increase in the emission of PM2.5.
+
+
 Baltimore <- NEI[NEI$fips == "24510", ]
 totalPM25ByYear <- tapply(Baltimore$Emissions, Baltimore$year, sum)
 plot(totalPM25ByYear, x = rownames(totalPM25ByYear), type = "n", axes = FALSE, 
@@ -12,4 +15,3 @@ axis(2)
 axis(side = 1, at = seq(1999, 2008, by = 3))
 box()
 
-R - The emission of PM2.5 decreases in the periods of 1998 to 2002 and between 2005 to 2008. However in the years of 2002 to 2005 there is a significant increase in the emission of PM2.5.

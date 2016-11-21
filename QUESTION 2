@@ -3,15 +3,18 @@ Use the base plotting system to make a plot answering this question.
 
 R - 
 
-
 Baltimore <- NEI[NEI$fips == "24510", ]
-totalPM25ByYear <- tapply(Baltimore$Emissions, Baltimore$year, sum)
-plot(totalPM25ByYear, x = rownames(totalPM25ByYear), type = "n", axes = FALSE, 
-+      ylab = expression("Total PM"[2.5] * " Emission (in tons)"), xlab = "Year", 
-+      main = expression("Total PM"[2.5] * " Emission in Baltimore (1999 - 2008)"))
-points(totalPM25ByYear, x = rownames(totalPM25ByYear), pch = 16, col = "purple")
-lines(totalPM25ByYear, x = rownames(totalPM25ByYear), col = "blue")
-axis(2)
-axis(side = 1, at = seq(1999, 2008, by = 3))
-box()
+emissionsByTypeAndYear <- aggregate(Emissions ~ type * year, data = Baltimore, 
+    FUN = sum)
 
+suppressWarnings(library(ggplot2))
+suppressWarnings(library(grid))
+
+q <- qplot(y = Emissions, x = year, data = emissionsByTypeAndYear, color = type, 
+    facets = . ~ type)
+q + scale_x_continuous(breaks = seq(1999, 2008, 3)) + theme_bw() + geom_point(size = 3) + 
+    geom_line() + labs(y = expression("Total " * PM[2.5] * " Emissions (in tons)")) + 
+    labs(x = "Year") + labs(title = expression("Total " * PM[2.5] * " Emissions in Baltimore (1999 - 2008)")) + 
+    theme(axis.text = element_text(size = 8), axis.title = element_text(size = 14), 
+        panel.margin = unit(1, "lines"), plot.title = element_text(vjust = 2), 
+        legend.title = element_text(size = 11)) + scale_colour_discrete(name = "Type")
